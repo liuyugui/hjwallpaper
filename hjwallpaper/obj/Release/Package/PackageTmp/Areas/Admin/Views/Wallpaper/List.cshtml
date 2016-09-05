@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "壁纸列表";
+    Layout = "~/Areas/Admin/Views/Shared/admin-top.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Public/style/admin-wallpaper.css" />
+
+
+<div class="wallpaper-main">
+    		
+    		
+    <ul id="wa-ul">
+
+    </ul>
+    		
+</div>
+
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+        	
+            requestList();
+
+
+
+        });
+
+
+        function requestList() {
+
+            //图片列表的请求
+            $.ajax({
+                url: "/Admin/Wallpaper/ListJson",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                data: null,    //参数值
+                type: "GET",   //请求方式
+                beforeSend: function () {
+                    //请求前的处理
+                },
+                success: function (req) {
+                    //请求成功时处理
+                    //根据后台返回的数据判断是否登录成功了
+                    if (req.isSucceed) {
+
+
+                        var str = "";
+
+                        for (var i = 0; i < req.data.length; i++) {
+
+                            str = str + "<li><div class='wa-ul-item'><img src='" + req.data[i].imageUrl + "'/><div class='wa-ul-item-footer'><a href='' class='btn btn-defu'>预览</a></div></div></li>";
+                            //<div class='wa-ul-item-footer'><h3>" + req.data[i].title + "</h3><p><span>点击：" + req.data[i].clickNum + "</span><span>分类：" + req.data[i].caTitle + "</span><span>主题：" + req.data[i].sbTitle + "</span><span>关键词:" + req.data[i].keyWord + "</span></p></div>
+                        }
+
+                        $("#wa-ul").html(str);
+
+
+                    } else {
+
+                        alert(req.message);
+
+                    }
+
+                },
+                complete: function () {
+                    //请求完成的处理
+
+                },
+                error: function () {
+                    //请求出错处理
+                    alert("错误");
+                }
+            });
+
+        }
+
+
+</script>

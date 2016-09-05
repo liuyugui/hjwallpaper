@@ -1,0 +1,192 @@
+﻿@{
+ViewBag.Title = "发布壁纸";
+Layout = "~/Areas/Admin/Views/Shared/admin-top.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/Public/style/admin-add.css" />
+
+
+<div class="admin-add-main">
+    		
+    		
+    	<form action="/admin/Wallpaper/AddPhoto" method="post" enctype="multipart/form-data">
+    			
+    			
+    		<div class="" id="phone">
+    			图片占位符
+    		</div>
+    			
+    		<div class="admin-add-main-input">
+    			图片名字：<input type="text" name="title" class="border1" />
+    		</div>
+    			
+    		<div class="admin-add-main-input">
+    			选择图片： <input type="file" name="fileUp" id="file" />
+    		</div>
+    			
+    		<div class="admin-add-main-input">
+    				
+    				
+    			分类：
+    			<select name="caID" id="category-select">
+    					
+    					
+    					
+    			</select>
+    				
+    			主题：
+    			<select name="sbID" id="subject-select">
+    					
+    					
+    					
+    			</select>
+	
+    		</div>
+
+            <div class="admin-add-main-input">
+
+                 关键词<请以“|”分隔开>：
+    			<textarea cols="30" rows="1"  name ="keyWord" class="border1"></textarea>
+
+                
+            </div>
+
+            <div class="admin-add-main-input">
+
+                
+                点击量：
+                <input type="text" name="clickNum" class="border1" value="0"/>
+
+            </div>
+               
+    			
+    			
+    		<div class="admin-add-main-input">
+    			<button class="btn btn-sccess" >发布</button>
+    		</div>
+    			
+    			
+    			
+    			
+    	</form>
+    		
+    </div>	
+    	
+    
+<script type="text/javascript">
+
+
+
+    //分类的请求
+    $.ajax({
+        url: "/admin/Category/List",    //请求的url地址
+        dataType: "json",   //返回格式为json
+        async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+        data: null,    //参数值
+        type: "GET",   //请求方式
+        beforeSend: function () {
+            //请求前的处理
+        },
+        success: function (req) {
+            //请求成功时处理
+            //根据后台返回的数据判断是否登录成功了
+            if (req.isSucceed) {
+
+                //			        	alert(req.message);
+
+
+
+                var str = "";
+
+                for (var i = 0; i < req.data.length; i++) {
+
+                    str = str + "<option value=" + req.data[i].caID + ">" + req.data[i].title + "</option>";
+                }
+
+                $("#category-select").html(str);
+
+
+            } else {
+
+                alert(req.message);
+
+            }
+
+        },
+        complete: function () {
+            //请求完成的处理
+
+        },
+        error: function () {
+            //请求出错处理
+            alert("错误");
+        }
+    });
+
+
+
+    //主题的请求
+    $.ajax({
+        url: "/admin/Subject/List",    //请求的url地址
+        dataType: "json",   //返回格式为json
+        async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+        data: null,    //参数值
+        type: "GET",   //请求方式
+        beforeSend: function () {
+            //请求前的处理
+        },
+        success: function (req) {
+            //请求成功时处理
+            //根据后台返回的数据判断是否登录成功了
+            if (req.isSucceed) {
+
+                //			        	alert(req.message);
+
+                var str = "";
+
+                for (var i = 0; i < req.data.length; i++) {
+
+                    str = str + "<option value=" + req.data[i].sbID + ">" + req.data[i].title + "</option>";
+                }
+
+                $("#subject-select").html(str);
+
+
+            } else {
+
+                alert(req.message);
+
+            }
+
+        },
+        complete: function () {
+            //请求完成的处理
+
+        },
+        error: function () {
+            //请求出错处理
+            alert("错误");
+        }
+    });
+
+
+
+    $(document).ready(function () {
+
+
+        $("#up-btn").click(function () {
+
+        });
+
+
+
+    });
+
+
+
+
+
+</script>
+    
+    

@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "主题管理";
+    Layout = "~/Areas/Admin/Views/Shared/admin-top.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/Public/style/admin-wallpaper.css" />
+
+<div class="subject-main">
+    
+    <div class="subject-main-left">
+
+        <form method="post" action="/Admin/Subject/AddJson" enctype="multipart/form-data">
+
+            <span><h2>添加主题</h2></span>
+
+            <span>主题名字：<input type="text" name="title" class="mt5 border1"></span>
+
+            <span>主题图片：<input type="file" name="fileUp" class="mt5"></span>
+
+            <span><button class="btn btn-sccess">添加</button></span>
+        
+        </form>
+        
+    </div>
+
+    <div class="subject-main-right">
+
+        <h2>已有的主题</h2>
+        <ul id="subject-select" ></ul>
+
+    </div>
+
+   
+
+    		
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //主题的请求
+        $.ajax({
+            url: "/admin/Subject/List",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+            data: null,    //参数值
+            type: "GET",   //请求方式
+            beforeSend: function () {
+                //请求前的处理
+            },
+            success: function (req) {
+                //请求成功时处理
+                //根据后台返回的数据判断是否登录成功了
+                if (req.isSucceed) {
+
+                    //			        	alert(req.message);
+
+                    var str = "";
+
+                    for (var i = 0; i < req.data.length; i++) {
+
+                        str = str + "<li><a href=''> "+ req.data[i].title + "</a></li>";
+                    }
+
+                    //value=" + req.data[i].sbID + ">" 
+
+                    $("#subject-select").html(str);
+
+
+                } else {
+
+                    alert(req.message);
+
+                }
+
+            },
+            complete: function () {
+                //请求完成的处理
+
+            },
+            error: function () {
+                //请求出错处理
+                alert("错误");
+            }
+        });
+
+    });
+
+
+</script>

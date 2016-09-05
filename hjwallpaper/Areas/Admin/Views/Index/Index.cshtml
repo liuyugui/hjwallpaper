@@ -1,0 +1,218 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    
+    <link rel="stylesheet" type="text/css" href="~/Public/style/css.css" />
+    <link rel="stylesheet" type="text/css" href="~/Public/style/admin-index.css" />
+
+    <script type="text/javascript" src="~/Public/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="~/Public/js/jquery.md5.js"></script>
+    <script type="text/javascript" src="~/Public/js/jbase64.js"></script>
+    
+</head>
+<body>
+    
+    <div class="w1200 margin-center">
+    	
+    	
+    	<!--头部-->
+    	<div class="admin-index-header">
+    		
+    		<div class="index-header-top">
+    		
+    			<h3>HJWallpaper</h3>
+    		</div>
+    		
+    		<div class="index-header-footer">
+    			
+    			<button class="btn btn-defu">退出</button>
+    		</div>
+    		
+    	</div>
+    	<!--头部结束-->
+    	
+    	<!--内容-->
+    	
+    	<div class="admin-index-content">
+    		
+    		
+    		<div class="admin-index-box">
+    			
+    			<div class="admin-index-box-title">
+    				<h4>壁纸</h4>
+    			</div>
+    			
+    			<div class="admin-index-box-content">
+    				
+    				<ul>
+    					<li>发布图片</li>
+    					<li><a href="/admin/WallpaperList/index">图片管理</a></li>
+    					
+    				</ul>
+    				
+    				<div class="clear-float"></div>
+    			</div>
+    			
+    			
+    		</div>
+    		
+    		<div class="clear-float"></div>
+    		
+    		<div class="admin-index-box">
+    			
+    			<div class="admin-index-box-title">
+    				<h4>主题</h4>
+    			</div>
+    			
+    			<div class="admin-index-box-content">
+    				
+    				<ul id="subject-ul">
+    					
+    				</ul>
+    				
+    				<div class="clear-float"></div>
+    			</div>
+    			
+    			
+    		</div>
+    		
+    		<div class="clear-float"></div>
+    		
+    		
+    		<div class="admin-index-box">
+    			
+    			<div class="admin-index-box-title">
+    				<h4>分类</h4>
+    			</div>
+    			
+    			<div class="admin-index-box-content">
+    				
+    				<ul id="category-ul">
+    					
+    				</ul>
+    				
+    				<div class="clear-float"></div>
+    			</div>
+    			
+    			
+    		</div>
+    		
+    		<div class="clear-float"></div>
+    		
+    		
+    		
+    	</div>
+    	
+    	<!--内容结束-->
+    </div>
+    
+    
+    
+    
+    
+     <script type="text/javascript">
+    	
+    	$(document).ready(function(){
+    		
+    		//分类的请求
+    		$.ajax({
+    		    url: "/admin/Category/List",    //请求的url地址
+			    dataType: "json",   //返回格式为json
+			    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+			    data: null,    //参数值
+			    type: "GET",   //请求方式
+			    beforeSend: function() {
+			        //请求前的处理
+			    },
+			    success: function(req) {
+			        //请求成功时处理
+			        //根据后台返回的数据判断是否登录成功了
+			        if(req.isSucceed){
+			        	
+//			        	alert(req.message);
+			        	
+						var str="";
+						
+						for(var i=0;i<req.data.length;i++){
+							
+							str = str+"<li>"+req.data[i].title+"</li>";
+						}
+						
+						$("#category-ul").html(str);
+					
+			        	
+			        }else{
+			        	
+			        	alert(req.message);
+			        	
+			        }
+			        
+			    },
+			    complete: function() {
+			        //请求完成的处理
+			        
+			    },
+			    error: function() {
+			        //请求出错处理
+			        alert("错误");
+			    }
+			});
+    		
+    		
+    		//主题的请求
+    		$.ajax({
+    		    url: "/admin/Subject/List",    //请求的url地址
+			    dataType: "json",   //返回格式为json
+			    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+			    data: null,    //参数值
+			    type: "GET",   //请求方式
+			    beforeSend: function() {
+			        //请求前的处理
+			    },
+			    success: function(req) {
+			        //请求成功时处理
+			        //根据后台返回的数据判断是否登录成功了
+			        if(req.isSucceed){
+			        	
+//			        	alert(req.message);
+			        	
+						var str="";
+						
+						for(var i=0;i<req.data.length;i++){
+							
+							str = str+"<li>"+req.data[i].title+"</li>";
+						}
+						
+						$("#subject-ul").html(str);
+					
+			        	
+			        }else{
+			        	
+			        	alert(req.message);
+			        	
+			        }
+			        
+			    },
+			    complete: function() {
+			        //请求完成的处理
+			        
+			    },
+			    error: function() {
+			        //请求出错处理
+			        alert("错误");
+			    }
+			});
+    		
+    		
+    	});
+    </script>
+    
+</body>
+</html>

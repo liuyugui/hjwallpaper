@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+    <link rel="stylesheet" type="text/css" href="~/Public/style/css.css" />
+	<link rel="stylesheet" type="text/css" href="~/Public/style/admin.css" />
+    <script type="text/javascript" src="~/Public/js/jquery-3.1.0.min.js"></script>
+
+</head>
+<body>
+
+   
+
+    <div class="w1200 margin-center admin-main">
+    	
+    	
+    	<!--头部-->
+    	<div class="admin-index-header">
+    		
+    		<div class="admin-header-top">
+    		
+    			<h3>HJWallpaper</h3>
+    		</div>
+    		
+    		<div class="admin-header-footer">
+    			
+    			<div class="admin-item">
+    				
+    				<div class="floatl admin-item-titlt">
+    					<span class="ml20"></span><a href="">主页</a>/<a href="">@ViewBag.Title</a>
+    				</div>
+    				
+    				
+    				<button class="btn btn-defu floatr">退出</button>
+    				<!--<button class="btn btn-sccess floatr" id="push-wallpaper-btn">发布壁纸</button>-->
+    				
+    			</div>
+    			
+    			
+    		</div>
+    		
+    	</div>
+    	<!--头部结束-->
+    	
+
+       <!--左边部分-->
+		
+		<div class="admin-left">
+			
+			<ul>
+                <li><a href="/Admin/Wallpaper/Index">主页</a></li>
+				<li><a href="/Admin/Wallpaper/List">壁纸列表</a></li>
+				<li><a href="/Admin/Wallpaper/Add">发布壁纸</a></li>
+				<li><a href="/Admin/Category/Index">分类管理</a></li>
+				<li><a href="/Admin/Subject/Index">主题管理</a></li>
+                <li><a href="/Admin/User/Quit">退出</a></li>
+			</ul>
+			
+		</div>
+
+		<div class="admin-right">
+			
+			
+			@RenderBody()
+			
+		</div>
+
+    	
+    		
+    	
+    </div>
+
+
+   
+
+
+</body>
+</html>

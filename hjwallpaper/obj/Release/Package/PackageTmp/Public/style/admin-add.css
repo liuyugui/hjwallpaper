@@ -1,0 +1,88 @@
+﻿
+.admin-add-main{
+	
+	text-align: center;
+	font-size: 14px;
+    margin-left:20px;
+    margin-top:20px;
+}
+
+
+#phone{
+	
+	display: inline-block;
+	border-radius: 4px;
+	width: 320px;
+	height: 480px;
+	/*background: orange;*/
+	line-height: 480px;
+	text-align: center;
+	
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+    display:none;
+}
+
+.admin-add-main-input{
+	
+	width: 100%;
+	height: 60px;
+	text-align:left;
+    margin-top:10px;
+    border-bottom:1px solid #efefef;
+}
+
+.admin-add-main-input select{
+	
+	width: 100px;
+	margin-left: 10px;
+	
+	border: 1px solid #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

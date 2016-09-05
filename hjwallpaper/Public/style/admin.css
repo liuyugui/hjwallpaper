@@ -1,0 +1,51 @@
+
+.admin-main{
+	position: relative;
+}
+
+.admin-left{
+	width: 120px;
+	position: absolute;
+	left: 0px;
+}
+
+.admin-left ul{
+	list-style: none;
+	margin-top: 20px;
+	border-bottom: 1px solid orange;
+	width: 120px;
+	background: white;
+}
+.admin-left ul li{
+	width: 120px;
+	height: 40px;
+	border-top: 1px solid orange;
+	border-left: 1px solid orange;
+	
+	
+}
+
+.admin-left ul li a{
+	
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 40px;
+	text-decoration: none;
+	display: inline-block;
+	background: white;
+	color: orange;
+}
+
+.admin-left ul li a:hover{
+	background: orange;
+	color: white;
+}
+
+
+.admin-right{
+	
+	position: absolute;
+	left: 120px;
+	border-left: 1px solid orange;
+}
